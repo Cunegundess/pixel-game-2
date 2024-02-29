@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6gcgb30a7eek"]
+[gd_scene load_steps=19 format=3 uid="uid://b6gcgb30a7eek"]
 
 [ext_resource type="Texture2D" uid="uid://cyd74gro70pgm" path="res://assets/tilemap/outside-world/main_lev_buildA.png" id="1_sx50a"]
 [ext_resource type="Texture2D" uid="uid://bkgp1q88blneo" path="res://assets/tilemap/outside-world/main_lev_buildB.png" id="2_cunrl"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://b2v7qi6osgsrr" path="res://assets/tilemap/outside-world/Background/background4.png" id="6_itedd"]
 [ext_resource type="Texture2D" uid="uid://d3nr4hmnjl8qf" path="res://assets/tilemap/outside-world/Background/background5.png" id="7_bjhgh"]
 [ext_resource type="Texture2D" uid="uid://c2ypjqc4jbkam" path="res://assets/tilemap/outside-world/Background/background6.png" id="8_u3dbn"]
+[ext_resource type="Texture2D" uid="uid://dgjcvxn03gpdx" path="res://assets/ui/play_button_1.png" id="10_ldvb6"]
+[ext_resource type="Texture2D" uid="uid://bniuw236jepua" path="res://assets/ui/play_button_2.png" id="11_rf5j7"]
+[ext_resource type="Texture2D" uid="uid://pb7oe24w7xsy" path="res://assets/ui/play_button_3.png" id="12_myl8x"]
+[ext_resource type="Texture2D" uid="uid://ntpf26hy6alc" path="res://assets/ui/play_button_4.png" id="13_fkxop"]
+[ext_resource type="Texture2D" uid="uid://cetaremp34myu" path="res://assets/ui/play_button_left.png" id="14_wpulv"]
+[ext_resource type="Texture2D" uid="uid://bo4n3kuoc2yf5" path="res://assets/ui/play_button_right.png" id="15_68jb8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dq7ij"]
 texture = ExtResource("1_sx50a")
@@ -5984,7 +5990,7 @@ sources/1 = SubResource("TileSetAtlasSource_tbjji")
 [node name="world" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(0, -188)
+position = Vector2(1, -189)
 tile_set = SubResource("TileSet_rwkyn")
 rendering_quadrant_size = 1
 format = 2
@@ -5996,12 +6002,13 @@ position = Vector2(33, 354)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(0, 4)
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 limit_left = 0
-limit_top = 80
-limit_right = 1152
-limit_bottom = 0
+limit_smoothed = true
 editor_draw_limits = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player/Camera2D"]
+remote_path = NodePath("..")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -6117,3 +6124,47 @@ position = Vector2(850, -1)
 scale = Vector2(0.713615, 1.3125)
 texture = ExtResource("8_u3dbn")
 centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1315, 390)
+scale = Vector2(8, 8)
+texture_normal = ExtResource("10_ldvb6")
+passby_press = true
+action = "kick"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1222, 495)
+scale = Vector2(8, 8)
+texture_normal = ExtResource("11_rf5j7")
+passby_press = true
+action = "sword_attack"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1409, 495)
+scale = Vector2(8, 8)
+texture_normal = ExtResource("12_myl8x")
+passby_press = true
+action = "punch"
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1315, 590)
+scale = Vector2(8, 8)
+texture_normal = ExtResource("13_fkxop")
+passby_press = true
+action = "up"
+
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(56, 543)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("14_wpulv")
+passby_press = true
+action = "left"
+
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(204, 543)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("15_68jb8")
+passby_press = true
+action = "right"
